@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Дрон-пролёт вдоль колонны фур • Babylon.js</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <script src="https://cdn.babylonjs.com/babylon.js"></script>
+    <script src="https://cdn.babylonjs.com/materialsLibrary/babylonjs.materials.min.js"></script>
+</head>
+
+<body>
+    <canvas id="renderCanvas"></canvas>
+
+    <header class="navbar">
+        <div class="brand">Transit<strong>Flow</strong> • Беларусь</div>
+        <nav>
+            <ul>
+                <li><a href="#" data-goto="0" class="active">Hero</a></li>
+                <li><a href="#" data-goto="1">Проблема</a></li>
+                <li><a href="#" data-goto="2">Решение</a></li>
+                <li><a href="#" data-goto="3">Результат</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="dots" id="dots"></div>
+    <div class="hud">Прокрутка: вниз/вверх — переход между секциями и пролёт дрона вдоль колонны</div>
+
+    <!-- Hero -->
+    <section class="page" data-index="0">
+        <div class="wrap">
+            <h1>Вид с дрона: колонна фур на обочине</h1>
+            <p class="lead">Беларусь решает проблему простоя на границе: настраиваемые коридоры, синхронизация служб,
+                предсказуемые окна оформления.</p>
+            <div class="hero-cta">
+                <button class="btn primary" data-goto="2">Как решаем</button>
+                <button class="btn" data-goto="1">Почему простаивали</button>
+            </div>
+            <div class="metrics">
+                <div class="metric">
+                    <div class="num" id="m1">—</div><small>Средний простой (часов)</small>
+                </div>
+                <div class="metric">
+                    <div class="num" id="m2">—</div><small>Пропускная способность, авто/час</small>
+                </div>
+                <div class="metric">
+                    <div class="num" id="m3">—</div><small>Очередь на подъезде, км</small>
+                </div>
+            </div>
+            <div class="note">3D-сцена: поле/лес, дорога, обочина с припаркованными фурами. Камера — «дрон» над
+                обочиной.</div>
+        </div>
+    </section>
+
+    <!-- Проблема -->
+    <section class="page" data-index="1">
+        <div class="wrap">
+            <h2>Проблема: простой и накопление колонн</h2>
+            <p class="lead">Фуры стоят на обочине, шлагбаум закрыт, узкие места процедур создают очередь.</p>
+            <div class="note">Секция фокусирует дрона на «хвосте» колонны и закрытом шлагбауме.</div>
+        </div>
+    </section>
+
+    <!-- Решение -->
+    <section class="page" data-index="2">
+        <div class="wrap">
+            <h2>Решение: приоритетный коридор и синхронизация</h2>
+            <p class="lead">Шлагбаум поднимается, оформление синхронизировано, поток движется предсказуемо.</p>
+            <div class="note">Дрон подлетает к зоне перехода, видно поднятие шлагбаума.</div>
+        </div>
+    </section>
+
+    <!-- Результат -->
+    <section class="page" data-index="3">
+        <div class="wrap">
+            <h2>Результат: меньше простоев — выше пропускная способность</h2>
+            <p class="lead">Очереди сокращаются, скорость прохождения растёт, потери времени минимальны.</p>
+            <div class="metrics">
+                <div class="metric">
+                    <div class="num" id="r1">—</div><small>Средний простой: ↓</small>
+                </div>
+                <div class="metric">
+                    <div class="num" id="r2">—</div><small>Пропускная способность: ↑</small>
+                </div>
+                <div class="metric">
+                    <div class="num" id="r3">—</div><small>Очередь: ↓</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <script src="./assets/js/main.js"></script>
+</body>
+
+</html>

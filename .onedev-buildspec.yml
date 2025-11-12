@@ -1,0 +1,21 @@
+version: "1.0"
+jobs:
+  - name: Deploy Static Site
+    steps:
+      - !CheckoutStep
+        name: checkout
+        condition: ALL_PREVIOUS_STEPS_SUCCESSFUL
+      
+      - !RunStep
+        name: deploy
+        image: nginx:alpine
+        commands:
+          - cp -r . /usr/share/nginx/html/
+        condition: ALL_PREVIOUS_STEPS_SUCCESSFUL
+        
+      - !RunStep
+        name: serve
+        image: nginx:alpine
+        commands:
+          - nginx -g "daemon off;"
+        condition: ALL_PREVIOUS_STEPS_SUCCESSFUL

@@ -270,27 +270,41 @@ const roof = BABYLON.MeshBuilder.CreateBox("roof", { width: 2.5, height: 0.2, de
 roof.position.set(4, 2.3, -5.5);
 roof.material = boothMat;
 
+// === Параметры сцены для заборов ===
+const fenceY = 0.9;       // высота установки
+const fenceH = 1.8;       // высота забора
+const roadWidth = 8;      // ширина дороги
+const fenceLength = 60;   // половина длины поляны вперёд-назад
 
-// === Забор (по обе стороны от шлагбаума) ===
-function createFenceSegment(x, zStart, zEnd) {
+// === Материал забора ===
+
+fenceMat.diffuseColor = new BABYLON.Color3(0.25, 0.25, 0.25);
+fenceMat.emissiveColor = new BABYLON.Color3(0.05, 0.05, 0.05);
+
+// === Функция для создания секции забора вдоль Z ===
+function createFence(zStart, zEnd, x) {
     const length = Math.abs(zEnd - zStart);
-    const fence = BABYLON.MeshBuilder.CreateBox("fence", { width: 0.1, height: 1.8, depth: length }, scene);
-    fence.position.set(x, 0.9, (zStart + zEnd) / 2);
+    const fence = BABYLON.MeshBuilder.CreateBox("fence", { width: 0.1, height: fenceH, depth: length }, scene);
+    fence.position.set(x, fenceY, (zStart + zEnd) / 2);
     fence.material = fenceMat;
     return fence;
 }
 
-// Левая и правая часть забора
-const fenceLeft = createFenceSegment(-6, -20, 20);
-const fenceRight = createFenceSegment(6, -20, 20);
+// === Левый и правый забор (по обе стороны дороги), с разрывом ===
+createFence(-fenceLength, -roadWidth / 2 - 1, -6.5); // левая часть до дороги
+createFence(roadWidth / 2 + 3, fenceLength, -6.5);   // левая часть после дороги
 
-// Добавляем колючую проволоку сверху
-function addBarbedWire(fence, count = 5) {
-    for (let i = 0; i < count; i++) {
+createFence(-fenceLength, -roadWidth / 2 - 1, 6.5);  // правая часть до дороги
+createFence(roadWidth / 2 + 3, fenceLength, 6.5);    // правая часть после дороги
+
+// === Колючая проволока поверх заборов ===
+function addBarbedWire(zStart, zEnd, x, height = 1.9) {
+    const step = 2.0;
+    for (let z = zStart; z < zEnd; z += step) {
         const wire = BABYLON.MeshBuilder.CreateTube("wire", {
             path: [
-                new BABYLON.Vector3(fence.position.x, fence.position.y + 1.0 + Math.sin(i * 0.6) * 0.05, fence.position.z - fence.scaling.z * 10 + i * 2.0),
-                new BABYLON.Vector3(fence.position.x, fence.position.y + 1.0 + Math.cos(i * 0.6) * 0.05, fence.position.z - fence.scaling.z * 10 + (i + 1) * 2.0)
+                new BABYLON.Vector3(x, fenceY + height + Math.sin(z * 0.2) * 0.05, z),
+                new BABYLON.Vector3(x, fenceY + height + Math.cos(z * 0.2) * 0.05, z + step)
             ],
             radius: 0.02
         }, scene);
@@ -298,8 +312,27 @@ function addBarbedWire(fence, count = 5) {
     }
 }
 
-addBarbedWire(fenceLeft);
-addBarbedWire(fenceRight);
+// Добавляем проволоку поверх всех четырёх отрезков
+addBarbedWire(-fenceLength, -roadWidth / 2 - 1, -6.5);
+addBarbedWire(roadWidth / 2 + 1, fenceLength, -6.5);
+addBarbedWire(-fenceLength, -roadWidth / 2 - 1, 6.5);
+addBarbedWire(roadWidth / 2 + 1, fenceLength, 6.5);
+
+
+
+// === Обочина (по обе стороны дороги) ===
+const shoulderWidth = 3.0;
+const roadLength = 180;
+
+// Левая обочина
+const leftShoulder = BABYLON.MeshBuilder.CreateGround("leftShoulder", { width: roadLength, height: shoulderWidth }, scene);
+leftShoulder.material = shoulderMat;
+leftShoulder.position.set(0, 0.002, -(roadWidth / 2 + shoulderWidth / 2));
+
+// Правая обочина
+const rightShoulder = BABYLON.MeshBuilder.CreateGround("rightShoulder", { width: roadLength, height: shoulderWidth }, scene);
+rightShoulder.material = shoulderMat;
+rightShoulder.position.set(0, 0.002, (roadWidth / 2 + shoulderWidth / 2));
 
 
 

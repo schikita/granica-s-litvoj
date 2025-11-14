@@ -1978,3 +1978,75 @@ a.yt-inline-link {
 .yt-inline-link:hover {
     color: #7bc0ff;
 }
+
+/* ===========================
+   МИД — финальная секция
+   =========================== */
+
+.mfa-final-section {
+    padding: 70px 0;
+    background: #03060a6e;
+}
+
+.mfa-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    padding: 0 20px;
+}
+
+.mfa-text {
+    flex: 1 1 55%;
+    color: #fff;
+    font-size: 18px;
+    line-height: 1.6;
+    background: rgba(0, 0, 0, 0.55);
+    padding: 32px;
+    border-radius: 14px;
+    animation: fadeInLeft 0.7s ease forwards;
+    opacity: 0;
+}
+
+.mfa-quote {
+    margin: 22px 0 0;
+    padding: 18px 22px;
+    background: rgba(255, 255, 255, 0.08);
+    
+    border-radius: 10px;
+    font-size: 18px;    
+    line-height: 1.55;
+}
+
+.mfa-media {
+    flex: 1 1 45%;
+    animation: fadeInRight 0.7s ease forwards;
+    opacity: 0;
+}
+
+.mfa-media img,
+.mfa-media video {
+    width: 100%;
+    border-radius: 16px;
+    display: block;
+    object-fit: cover;
+}
+
+/* Адаптив */
+@media (max-width: 960px) {
+    .mfa-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+    .mfa-text {
+        font-size: 17px;
+    }
+}
+
+@media (max-width: 480px) {
+    .mfa-text {
+        padding: 22px;
+        font-size: 16px;
+    }
+}

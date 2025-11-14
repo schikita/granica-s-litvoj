@@ -1468,3 +1468,157 @@ h1.hero-title {
         padding: 18px 18px;
     }
 }
+
+
+/* === Что дальше секция ===*/
+
+/* СЕКЦИЯ — фон НЕ затемняем */
+.what-next-section {
+    background: transparent; /* оставить фон страницы */
+    color: #fff;
+    padding: 80px 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+/* ТЕКСТОВАЯ ПОДЛОЖКА — затемнённая */
+.what-next-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 40px;
+    background: rgba(0, 0, 0, 0.65); /* затемнение только блока */
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(4px);
+    animation: fadeInUp 0.8s ease forwards;
+    opacity: 0;
+}
+
+.what-next-container h2 {
+    font-size: 42px;
+    margin-bottom: 25px;
+    font-weight: 700;
+}
+
+.what-next-container p {
+    font-size: 20px;
+    line-height: 1.65;
+    margin-bottom: 20px;
+    font-weight: 300;
+}
+
+/* Анимация */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Адаптив */
+@media (max-width: 900px) {
+    .what-next-container {
+        padding: 30px 28px;
+    }
+
+    .what-next-container h2 {
+        font-size: 32px;
+        text-align: center;
+    }
+
+    .what-next-container p {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 500px) {
+    .what-next-container {
+        padding: 24px;
+    }
+
+    .what-next-container h2 {
+        font-size: 28px;
+    }
+
+    .what-next-container p {
+        font-size: 16px;
+    }
+}
+
+
+/* === Переговоры === */
+
+.negotiations-section {
+    background: transparent;
+    color: #fff;
+    padding: 90px 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.negotiations-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+.negotiations-text {
+    background: rgba(0,0,0,0.65);
+    padding: 40px 40px;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.12);
+    backdrop-filter: blur(4px);
+    margin-bottom: 40px;
+    animation: fadeInUp 0.8s ease forwards;
+    opacity: 0;
+}
+
+.negotiations-text h2 {
+    font-size: 38px;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.negotiations-text p {
+    font-size: 20px;
+    line-height: 1.65;
+    font-weight: 300;
+}
+
+/* горизонтальное видео */
+.negotiations-video {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.negotiations-video video {
+    width: 80%;                 /* было 100% → делаем аккуратнее */
+    max-width: 900px;           /* жесткое ограничение чтобы не растягивалось */
+    aspect-ratio: 16 / 9;       /* держим красивую пропорцию */
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.18);
+    box-shadow: 0 0 25px rgba(0,0,0,0.5);
+    object-fit: cover;
+}
+
+/* Адаптив */
+@media (max-width: 700px) {
+    .negotiations-text h2 {
+        font-size: 30px;
+    }
+
+    .negotiations-text p {
+        font-size: 17px;
+    }
+
+    .negotiations-text {
+        padding: 28px;
+    }
+
+      .negotiations-video video {
+        width: 100%;        /* на мобильных — нормально на всю ширину */
+        max-width: 100%;
+        aspect-ratio: 16/9;
+    }
+}

@@ -1960,3 +1960,21 @@ h1.hero-title {
     margin-left: auto;
     margin-right: auto;
 }
+
+
+a.yt-inline-link {
+  text-decoration: none;
+}
+
+.yt-inline-link {
+    color: #4aa3ff;
+    text-decoration: underline;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 3px;
+    font-weight: 600;
+    transition: color 0.15s ease;
+}
+
+.yt-inline-link:hover {
+    color: #7bc0ff;
+}

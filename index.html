@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>Дрон-пролёт вдоль колонны фур • Babylon.js</title>
+    <title></title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
 
 
@@ -13,57 +13,272 @@
 </head>
 
 <body>
+    <!-- PRELOADER -->
+    <div id="preloader">
+
+        <div class="loader-text">ЖИВОЙ РЕПОРТАЖ</div>
+        <div class="loader-circle"></div>
+    </div>
     <canvas id="renderCanvas"></canvas>
 
-    <header class="navbar">
-        <div class="brand">Лого</div>
-        <nav>
-            <ul>
-                <li><a href="#" data-goto="0" class="active">Hero</a></li>
-                <li><a href="#" data-goto="1">Проблема</a></li>
-                <li><a href="#" data-goto="2">Решение</a></li>
-                <li><a href="#" data-goto="3">Результат</a></li>
-            </ul>
+    <header class="site-header" role="banner">
+        <div class="container header-container">
+            <a href="https://www.sb.by/" class="logo">
+                <img src="./assets/img/logo.png" alt="Логотип SB.BY" width="44" height="44" />
+                <span class="logo-text">SB.BY</span>
+            </a>
+
+            <!-- Гамбургер -->
+            <button class="nav-toggle" id="nav-toggle" aria-label="Открыть меню">
+                <svg width="28" height="28" viewBox="0 0 24 24">
+                    <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        fill="none" />
+                </svg>
+            </button>
+
+            <!-- Desktop меню -->
+            <nav class="main-nav" aria-label="Основное меню">
+                <ul id="nav-menu" class="nav-list">
+                    <li><a href="#" data-goto="1">Как все начиналось?</a></li>
+                    <li><a href="#ascent">Ответ Беларуси</a></li>
+                    <li><a href="#summit">Что дальше?</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Мобильный оверлей -->
+        <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
+
+        <!-- Мобильное меню -->
+        <nav class="mobile-nav" id="mobile-nav" aria-label="Мобильное меню">
+            <div class="mobile-nav-header">
+                <a class="logo">
+                    <img src="./assets/img/logo.png" width="40" height="40" />
+                    <span class="logo-text">SB.BY</span>
+                </a>
+                <button class="nav-close" id="nav-close" aria-label="Закрыть меню">
+                    <svg width="24" height="24" viewBox="0 0 24 24">
+                        <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            fill="none" />
+                    </svg>
+                </button>
+            </div>
+
+            <ul class="mobile-nav-menu" id="mobile-nav-menu"></ul>
+
+            <!-- КАРТИНКА ВНИЗУ -->
+            <div class="mobile-nav-bottom">
+                <img src="./assets/img/botton-nav.png" alt="">
+            </div>
         </nav>
+
     </header>
 
-    <div class="dots" id="dots"></div>
-    <div class="hud">Прокрутка: вниз/вверх — переход между секциями и пролёт дрона вдоль колонны</div>
 
-    <!-- Hero -->
-    <section class="page" data-index="0">
-        <div class="wrap">
-            <h1>Вид с дрона: колонна фур на обочине</h1>
-            <p class="lead">Беларусь решает проблему простоя на границе: настраиваемые коридоры, синхронизация служб,
-                предсказуемые окна оформления.</p>
-            <div class="hero-cta">
-                <button class="btn primary" data-goto="2">Как решаем</button>
-                <button class="btn" data-goto="1">Почему простаивали</button>
+    <div class="dots" id="dots"></div>
+    <div class="hud">Прокрутка: вниз/вверх — переход между секциями</div>
+
+
+    <!-- HERO -->
+    <section class="hero page" data-index="0">
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+
+            <!-- Заголовок -->
+            <h1 class="hero-main-title">Граница с Литвой</h1>
+
+            <!-- Полупрозрачная плашка -->
+            <div class="hero-subbox">
+                Что происходит сейчас, о чем говорят политики и к чему это приведет?
             </div>
-            <div class="metrics">
-                <div class="metric">
-                    <div class="num" id="m1">—</div><small>Средний простой (часов)</small>
-                </div>
-                <div class="metric">
-                    <div class="num" id="m2">—</div><small>Пропускная способность, авто/час</small>
-                </div>
-                <div class="metric">
-                    <div class="num" id="m3">—</div><small>Очередь на подъезде, км</small>
-                </div>
-            </div>
-            <div class="note">3D-сцена: поле/лес, дорога, обочина с припаркованными фурами. Камера — «дрон» над
-                обочиной.</div>
+
+            <img class="liveReport" src="./assets/img/splash.png" alt="">
+            <br>
+
+            <a href="#" class="hero-button" data-goto="1">подробнее</a>
+
+
         </div>
     </section>
+
+    <section class="page intro-section" data-index="1" id="intro">
+
+
+        <div class="intro-inner">
+
+            <div class="intro-text">
+                <h2>Как всё начиналось?</h2>
+
+                <p>
+                    27 октября Литва закрыла границу с Беларусью. Это была четвертая попытка за неделю
+                    приостановить движение транспортных средств и лиц через КПП – до этого страна
+                    без предупреждения закрывала пункты пропуска на несколько часов.
+                </p>
+
+                <p>
+                    Сперва говорилось о бессрочном прекращении движения, после власти определились,
+                    что ограничения будут действовать до 30 ноября.
+                </p>
+            </div>
+
+            <div class="intro-photo">
+                <img src="./assets/img/begin.jpg" alt="intro photo">
+            </div>
+
+        </div>
+    </section>
+
+
+
 
     <!-- Проблема -->
-    <section class="page" data-index="1">
+    <section class="page news-section" data-index="1">
         <div class="wrap">
-            <h2>Проблема: простой и накопление колонн</h2>
-            <p class="lead">Фуры стоят на обочине, шлагбаум закрыт, узкие места процедур создают очередь.</p>
-            <div class="note">Секция фокусирует дрона на «хвосте» колонны и закрытом шлагбауме.</div>
+
+            <!-- СЛАЙДЕР 1 -->
+            <div class="slider">
+
+                <!-- СЛАЙДЫ -->
+                <div class="slides">
+                    <img src="./assets/img/slider1/1.jpg">
+                    <img src="./assets/img/slider1/2.jpg">
+                    <img src="./assets/img/slider1/3.jpg">
+                    <img src="./assets/img/slider1/4.jpg">
+                    <img src="./assets/img/slider1/5.jpg">
+
+                </div>
+
+                <button class="slider-btn prev">‹</button>
+                <button class="slider-btn next">›</button>
+
+            </div>
         </div>
     </section>
+
+
+    <section class="page two-column-fade-section" data-index="X">
+        <div class="fade-left">
+            <div class="fade-slider">
+                <img src="./assets/img/story/1.jpg" class="fade-slide active">
+                <img src="./assets/img/story/2.jpg" class="fade-slide">
+                <img src="./assets/img/story/3.jpg" class="fade-slide">
+            </div>
+        </div>
+
+        <div class="fade-right">
+            <h2>Официальное уведомление Литвы</h2>
+
+            <p>
+                Официально Литва уведомила Беларусь об ограничении и закрытии пунктов
+                пропуска на границе лишь 30 октября.
+            </p>
+
+            <p>
+                Ограничения на передвижение физических лиц и транспорта через пункт пропуска
+                «Мядининкай» («Каменный Лог») ввелись до 01:00 по белорусскому времени
+                1 декабря текущего года.
+            </p>
+
+            <p>
+                Оформление физических лиц и транспорта в литовском пункте пропуска
+                «Шальчининкай» («Бенякони») полностью приостановлено.
+            </p>
+        </div>
+    </section>
+
+    <section class="page crossing-grid-section" data-index="5">
+        <div class="wrap">
+            <h2 class="grid-title">Кому разрешено пересечение границы?</h2>
+
+            <div class="grid-carousel" id="grid-carousel">
+
+                <div class="grid-track">
+
+                    <!-- КАРТОЧКА 1 -->
+                    <div class="grid-card">
+                        <img src="./assets/icons/doc.png" class="grid-icon" alt="">
+                        <p>
+                            лиц, имеющих дипломатические или служебные паспорта либо перевозящих дипломатическую почту
+                            Литовской Республики;
+                        </p>
+                    </div>
+
+                    <!-- КАРТОЧКА 2 -->
+                    <div class="grid-card">
+                        <img src="./assets/icons/pass.png" class="grid-icon" alt="">
+                        <p>
+                            лиц, следующих по документу упрощенного транзита, выданному в соответствии с Регламентом
+                            Совета (EC) № 693/2003 от 14 апреля 2003 года, устанавливающим специальный документ
+                            упрощенного транзита (STD);
+                        </p>
+                    </div>
+
+                    <!-- КАРТОЧКА 3 -->
+                    <div class="grid-card">
+                        <img src="./assets/icons/lithuania.png" class="grid-icon" alt="">
+                        <p>
+                            граждан Литовской Республики и членов их семей, возвращающихся в Литовскую Республику;
+                        </p>
+                    </div>
+
+                    <!-- КАРТОЧКА 4 -->
+                    <div class="grid-card">
+                        <img src="./assets/icons/razr.png" class="grid-icon" alt="">
+                        <p>
+                            иностранцев, имеющих действительное разрешение на проживание в Литовской Республике и
+                            возвращающихся в нее;
+                        </p>
+                    </div>
+
+                    <!-- КАРТОЧКА 5 -->
+                    <div class="grid-card">
+                        <img src="./assets/icons/humanitarian visa.png" class="grid-icon" alt="">
+                        <p>
+                            иностранцев, прибывающих в Литовскую Республику по гуманитарным визам, выданным
+                            представительствами Литовской Республики;
+                        </p>
+                    </div>
+
+                    <!-- КАРТОЧКА 6 -->
+                    <div class="grid-card">
+                        <img src="./assets/icons/inter.png" class="grid-icon" alt="">
+                        <p>
+                            граждан ЕС, ЕЭЗ, Швейцарии, Монако, Сан-Марино, Ватикана, Украины;
+                        </p>
+                    </div>
+                    <!-- КАРТОЧКА 7 -->
+                    <div class="grid-card">
+                        <img src="./assets/icons/es.png" class="grid-icon" alt="">
+                        <p>
+                            граждан — членов Европейского союза, Европейской экономической зоны, Швейцарской
+                            Конфедерации, Княжества Андорра, Княжества Монако, Республики Сан-Марино, Святого Престола
+                            (Государства-города Ватикан), Украины и членов их семей и стран — участников
+                            Североатлантического договора;
+                    </div>
+                    <!-- КАРТОЧКА 8 -->
+                    <div class="grid-card">
+                        <img src="./assets/icons/diplomat.png" class="grid-icon" alt="">
+                        <p>
+                            членов персонала диппредставительств или консульских учреждений вышеупомянутых стран в
+                            Республике Беларусь, являющихся гражданами Республики Беларусь, направляющихся по служебным
+                            делам.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-bottom-note">
+                Пересечение границы в пункте пропуска «Мядининкай» («Каменный Лог») разрешено в иных исключительных
+                случаях, по которым ходатайствует Министерство иностранных дел Литовской Республики.
+            </div>
+
+        </div>
+    </section>
+
+
+
+
 
     <!-- Решение -->
     <section class="page" data-index="2">
@@ -93,7 +308,7 @@
         </div>
     </section>
 
-   <script src="./assets/js/main.js"></script>
+    <script type="module" src="./assets/js/main.js"></script>
 </body>
 
 </html>

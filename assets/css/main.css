@@ -1701,3 +1701,238 @@ h1.hero-title {
     }
 }
 
+.section-title {
+  
+  text-align: center;
+  text-transform: uppercase;
+  font-family:"Gilroy ExtraBold";
+  color: #ffffff;
+  text-shadow: 1px 1px 5px var(--color-bg-dark);
+}
+
+
+
+.projects-section {
+  position: relative;
+  width: 100%;
+  padding-block: clamp(24px, 4vw, 48px);
+  overflow: hidden;
+  isolation: isolate;
+
+
+}
+
+/* затемнение + лёгкий блюр поверх фона */
+.projects-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(4px);
+}
+
+/* контент поверх */
+.projects-inner {
+  position: relative;
+  z-index: 1;
+}
+
+/* остальной CSS оставь, только убери дублирующее .projects-section сверху */
+
+.projects-viewport {
+  position: relative;
+  max-width: min(800px, 96vw);
+  margin: 16px auto 0;
+}
+.projects-stage {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+  background: color-mix(in srgb, #111 92%, transparent);
+}
+
+.project-card {
+  position: absolute;
+  inset: 0;
+  display: block;
+  border-radius: inherit;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-slow);
+  transform: translateZ(0);
+  will-change: opacity;
+}
+
+.project-card.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.project-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.92);
+}
+
+.project-info {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: clamp(14px, 2.4vw, 22px);
+  color: var(--color-text-light);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.15) 0%,
+    rgba(0, 0, 0, 0.55) 60%,
+    rgba(0, 0, 0, 0.75) 100%
+  );
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+.project-info h3 {
+  margin: 0 0 6px;
+  font-size: clamp(18px, 2.2vw, 22px);
+  line-height: 1.25;
+  font-family:"Gilroy ExtraBold";
+  color: #e6bb10;
+}
+
+.project-info p {
+  margin: 0;
+  opacity: 0.95;
+  font-size: clamp(14px, 1.6vw, 16px);
+  font-family:"Gilroy light";
+  color: #ffffff;
+}
+
+.projects-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.pr-btn {
+  border: 1px solid color-mix(in srgb, #9aa3b2 35%, transparent);
+  background: color-mix(in srgb, #0f1221 85%, transparent);
+  color: #e7ebff;
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.pr-btn:hover {
+  transform: translateY(-1px);
+}
+
+.pr-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.pr-dots i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: color-mix(in srgb, #9aa3b2 40%, transparent);
+  transition: background var(--transition-base);
+}
+
+.pr-dots i.is-on {
+  background: linear-gradient(135deg, #6c7bff, #9e6cff);
+}
+
+.projects-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(32px, 6vw, 60px);
+}
+
+.btn-all-projects {
+  display: inline-block;
+  font-family:"Gilroy ExtraBold";
+  font-size: clamp(15px, 1.6vw, 18px);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color:#ffffff;
+  background: linear-gradient(135deg, #4264c4, #1c1a8b);
+  border: none;
+  border-radius: 12px;
+  padding: 14px 36px;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.4);
+  transition: background #106fbd, transform 0.25s ease,
+    box-shadow #a247df;
+}
+
+.btn-all-projects:hover {
+  background: linear-gradient(135deg, #d13a3a, #9d1f1f);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(181, 45, 45, 0.55);
+}
+
+.btn-all-projects:active {
+  transform: translateY(1px);
+  box-shadow: 0 5px 14px rgba(181, 45, 45, 0.4);
+}
+
+
+/* ===================================
+   FOOTER
+   =================================== */
+.site-footer {
+  background: #0d0d0d;
+  color: #e0e0e0;
+  text-align: center;
+  padding: 40px 16px 30px;
+  font-family:"Gilroy light";
+  font-size: 15px;
+  line-height: 1.6;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-credits {
+  margin-bottom: 14px;
+}
+
+.footer-credits p {
+  margin: 4px 0;
+  color: #ffffff;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+.footer-divider {
+  width: 96%;
+  max-width: 960px;
+  margin: 18px auto;
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.footer-copy {
+  font-size: 14px;
+  color: #ccc;
+  opacity: 0.85;
+}
+
+.projects-section .site-footer {
+    position: relative;
+    z-index: 2;
+    margin-top: 60px;
+    padding: 40px 20px 20px;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(6px);
+    border-radius: 16px;
+    width: min(900px, 92%);
+    margin-left: auto;
+    margin-right: auto;
+}

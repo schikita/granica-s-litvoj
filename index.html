@@ -190,7 +190,7 @@
 
     <section class="page crossing-grid-section" data-index="5">
         <div class="wrap">
-            <h2 class="grid-title">Кому разрешено пересечение границы?</h2>
+            <h2 class="grid-title">Данные ограничения не распространяются на:</h2>
 
             <div class="grid-carousel" id="grid-carousel">
 
@@ -283,7 +283,7 @@
             <div class="quote-mark">“</div>
 
             <p class="quote-text">
-                Под ударом оказались, как дальнобойщики, так и простые люди, ведь теперь, если ты не попал
+                Под ударом оказались как дальнобойщики, так и простые люди, ведь теперь, если ты не попал
                 под перечисленные категории, единственный способ попасть в Литву – это выехать через Польшу
                 или Латвию. Очереди на этих направлениях огромные, а путь от нескольких десятков километров
                 до Вильнюса для людей вырос в несколько сотен.
@@ -352,14 +352,6 @@
             </div>
 
             <div class="warning-text">
-
-
-                <p> Решение понятное
-                    за истекшие сутки наша страна-соседка приняла лишь 75 грузовиков на свою территорию из 500
-                    возможных.
-                    Все остальные были вынуждены занимать место возле пунктов пропуска — только на «Каменном Логе»
-                    ожидали свыше 660 авто.
-                </p>
 
                 <p>
                     На специализированных стоянках машины не мешают проезду и, кроме того, будут под надежной охраной.
@@ -477,7 +469,7 @@
 
     <section class="page final-section" data-index="12">
         <div class="final-container">
-          
+
             <p>
                 Наша позиция по вопросу границы четкая и взвешенная — мы за нормализацию отношений и готовы к диалогу.
                 Но есть ли с кем в Литве обсуждать эти вопросы? В тот же день, например, глава тамошнего МВД выступил
@@ -490,12 +482,141 @@
             </p>
 
             <div class="final-divider"></div>
-          
+
         </div>
     </section>
 
 
+    <section class="page projects-section" id="projects" aria-label="Живой репортаж — материалы">
+        <div class="projects-inner container">
+
+            <div class="section-header">
+                <h2 class="section-title text-pr">Живой репортаж — материалы</h2>
+            </div>
+
+            <!-- Главный карусельный контейнер -->
+            <div class="projects-viewport" data-autoplay="true" data-interval="5000">
+
+                <!-- Слайдер -->
+                <div class="projects-stage">
+
+                    <a href="https://www.sb.by/sp/nikogda-ne-sdavaites/" class="project-card">
+                        <img src="./assets/img/projects/last.jpg" loading="lazy" alt="Никогда не сдавайтесь!" />
+                        <div class="project-info">
+                            <h3>Никогда не сдавайтесь!</h3>
+                        </div>
+                    </a>
+
+                    <a href="https://www.sb.by/sp/iz-minska-v-derevnu/" class="project-card is-active">
+                        <img src="./assets/img/projects/farm-view.jpg" loading="lazy" alt="Из Минска — в деревню" />
+                        <div class="project-info">
+                            <h3>Из Минска — в деревню</h3>
+                        </div>
+                    </a>
+
+                    <a href="https://www.sb.by/sp/spotting/" class="project-card">
+                        <img src="./assets/img/projects/hero.jpg" loading="lazy" alt="Кто такие споттеры?" />
+                        <div class="project-info">
+                            <h3>Кто такие споттеры?</h3>
+                        </div>
+                    </a>
+
+                    <a href="https://www.sb.by/sp/kak-vigladit-mir-s-visoty/" class="project-card">
+                        <img src="./assets/img/projects/hero1.jpg" loading="lazy" alt="Кто такие споттеры?" />
+                        <div class="project-info">
+                            <h3>Как выглядит мир с высоты 5895 метров?</h3>
+                        </div>
+                    </a>
+
+                </div>
+
+                <!-- Контролы -->
+                <div class="projects-controls">
+                    <button class="pr-btn prev" aria-label="Назад">◀</button>
+                    <div class="pr-dots" aria-hidden="true"></div>
+                    <button class="pr-btn next" aria-label="Вперед">▶</button>
+                </div>
+
+            </div>
+
+            <!-- Кнопка "Все материалы" -->
+            <div class="projects-footer">
+                <a href="https://www.sb.by/articles/themes/spetsproekt-sb-nash-zhivoy-reportazh/"
+                    class="btn-all-projects">
+                    Смотреть все материалы
+                </a>
+            </div>
+
+        </div>
+
+        <!-- Футер внутри секции (как ты сделал) -->
+        <footer class="site-footer">
+            <div class="footer-credits">
+                <p>Автор: <strong>Мария КРУШЕВСКАЯ</strong></p>
+            </div>
+
+            <hr class="footer-divider" />
+
+            <div class="footer-copy">© Издательский дом «Беларусь сегодня»</div>
+        </footer>
+    </section>
+
+
+
+
+
+
     <script type="module" src="./assets/js/main.js"></script>
+    <script>
+        function loadYandexMetrika() {
+            (function (m, e, t, r, i, k, a) {
+                m[i] =
+                    m[i] ||
+                    function () {
+                        (m[i].a = m[i].a || []).push(arguments);
+                    };
+                m[i].l = 1 * new Date();
+                for (var j = 0; j < document.scripts.length; j++) {
+                    if (document.scripts[j].src === r) return;
+                }
+                (k = e.createElement(t)),
+                    (a = e.getElementsByTagName(t)[0]),
+                    (k.async = 1),
+                    (k.src = r),
+                    a.parentNode.insertBefore(k, a);
+            })(
+                window,
+                document,
+                "script",
+                "https://mc.yandex.ru/metrika/tag.js",
+                "ym"
+            );
+            ym(16707172, "init", {
+                webvisor: true,
+                clickmap: true,
+                accurateTrackBounce: true,
+                trackLinks: true,
+            });
+        }
+
+        function loadGTM() {
+            (function (w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+                var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s),
+                    dl = l != "dataLayer" ? "&l=" + l : "";
+                j.async = true;
+                j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, "script", "dataLayer", "GTM-KRVNNK");
+        }
+
+        window.addEventListener("load", () => {
+            setTimeout(loadYandexMetrika, 3000);
+            setTimeout(loadGTM, 4000);
+        });
+    </script>
 </body>
 
 </html>

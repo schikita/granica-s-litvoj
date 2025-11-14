@@ -1465,3 +1465,65 @@ function initGridCarousel() {
 
 initGridCarousel();
 
+
+// ===============================
+// КАРУСЕЛЬ ПРОЕКТОВ
+// ===============================
+(function setupProjectsCarousel() {
+  const viewport = document.querySelector('#projects .projects-viewport');
+  if (!viewport) return;
+
+  const stage = viewport.querySelector('.projects-stage');
+  const cards = [...stage.querySelectorAll('.project-card')];
+  if (!cards.length) return;
+
+  const dotsWrap = viewport.querySelector('.pr-dots');
+  const prevBtn = viewport.querySelector('.prev');
+  const nextBtn = viewport.querySelector('.next');
+
+  let i = 0, timer = null;
+  const interval = +(viewport.dataset.interval || 5000);
+  const autoplay = viewport.dataset.autoplay !== 'false';
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  dotsWrap.innerHTML = cards.map(() => '<i></i>').join('');
+  const dots = [...dotsWrap.children];
+
+  const show = (idx) => {
+    i = (idx + cards.length) % cards.length;
+    cards.forEach((c, k) => c.classList.toggle('is-active', k === i));
+    dots.forEach((d, k) => d.classList.toggle('is-on', k === i));
+  };
+
+  const next = () => show(i + 1);
+  const prev = () => show(i - 1);
+  const play = () => {
+    if (reduce || !autoplay) return;
+    stop();
+    timer = setInterval(next, interval);
+  };
+  const stop = () => timer && clearInterval(timer);
+
+  show(0);
+  play();
+
+  nextBtn?.addEventListener('click', () => { next(); play(); });
+  prevBtn?.addEventListener('click', () => { prev(); play(); });
+  dotsWrap.addEventListener('click', (e) => {
+    const idx = dots.indexOf(e.target);
+    if (idx > -1) { show(idx); play(); }
+  });
+
+  viewport.addEventListener('mouseenter', stop);
+  viewport.addEventListener('mouseleave', play);
+  viewport.addEventListener('focusin', stop);
+  viewport.addEventListener('focusout', play);
+
+  // Авто-пауза вне экрана
+const sectionsObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('in-view');
+  });
+}, { threshold: 0.2 });
+  io.observe(viewport);
+})();

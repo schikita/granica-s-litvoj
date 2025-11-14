@@ -28,6 +28,11 @@ body {
   font: 16px/1.6;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
+
 #renderCanvas {
   position: fixed;
   inset: 0;
@@ -946,7 +951,13 @@ h1.hero-title {
     overflow-y: visible;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
-    padding-bottom: 10px;
+    padding-bottom: 0;
+    
+    scrollbar-width: none;        /* Firefox — скрытие полосы */
+}
+
+.grid-carousel::-webkit-scrollbar {
+    display: none;                /* Chrome/Safari — скрытие полосы */
 }
 
 .grid-track {
@@ -1622,3 +1633,71 @@ h1.hero-title {
         aspect-ratio: 16/9;
     }
 }
+
+
+/* === Final section === */
+
+.final-section {
+    padding: 80px 0 120px;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+.final-container {
+    max-width: 900px;
+    padding: 40px 45px;
+    background: rgba(0,0,0,0.60);          /* лёгкое затемнение */
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.14);
+    backdrop-filter: blur(4px);
+    animation: fadeInUp 0.9s ease forwards;
+    opacity: 0;
+}
+
+.final-container h2 {
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+.final-container p {
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.final-divider {
+    width: 100%;
+    height: 2px;
+    background: rgba(255,255,255,0.12);
+    margin: 35px 0;
+    border-radius: 1px;
+}
+
+.final-end-note {
+    font-size: 18px;
+    font-weight: 300;
+    opacity: 0.9;
+    text-align: center;
+}
+
+/* Адаптив */
+@media (max-width: 700px) {
+    .final-container {
+        padding: 28px;
+    }
+    .final-container h2 {
+        font-size: 32px;
+    }
+    .final-container p {
+        font-size: 17px;
+    }
+    .final-end-note {
+        font-size: 16px;
+    }
+}
+

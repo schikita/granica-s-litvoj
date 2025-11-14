@@ -1527,3 +1527,132 @@ const sectionsObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.2 });
   io.observe(viewport);
 })();
+
+
+// ======================================================
+//  LAZY SYSTEM: VIDEO + IMG + BACKGROUND + HEAVY BLOCKS
+// ======================================================
+
+// ----------------------
+// 1. Ленивая загрузка IMG
+// ----------------------
+document.querySelectorAll('img[data-src]').forEach(img => {
+    img.loading = "lazy";
+
+    const obs = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) {
+            img.src = img.dataset.src;
+            img.removeAttribute('data-src');
+            obs.disconnect();
+        }
+    }, { threshold: 0.15 });
+
+    obs.observe(img);
+});
+
+// --------------------------
+// 2. Ленивая загрузка VIDEO
+// --------------------------
+document.querySelectorAll('video[data-src]').forEach(video => {
+    const obs = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) {
+            const src = video.dataset.src;
+            const poster = video.dataset.poster;
+
+            if (poster) video.poster = poster;
+            video.querySelector("source").src = src;
+            video.load();
+
+            video.removeAttribute("data-src");
+            video.removeAttribute("data-poster");
+
+            obs.disconnect();
+        }
+    }, { threshold: 0.2 });
+
+    obs.observe(video);
+});
+
+// --------------------------------
+// 3. Ленивая загрузка background
+// --------------------------------
+document.querySelectorAll('[data-bg]').forEach(el => {
+    const obs = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) {
+            el.style.backgroundImage = `url(${el.dataset.bg})`;
+            el.removeAttribute("data-bg");
+            obs.disconnect();
+        }
+    }, { threshold: 0.2 });
+
+    obs.observe(el);
+});
+
+// -----------------------------------------
+// 4. Ленивая инициализация тяжёлых блоков
+// -----------------------------------------
+const heavyBlocks = {
+    parking: {
+        selector: ".final-section",
+        loaded: false,
+        init: () => {
+            // Запускаем то, что грузит много геометрии
+            console.log("🎯 Parking scene enabled");
+        }
+    },
+    gridcarousel: {
+        selector: ".crossing-grid-section",
+        loaded: false,
+        init: () => {
+            initGridCarousel();
+        }
+    },
+    projects: {
+        selector: "#projects",
+        loaded: false,
+        init: () => {
+            console.log("📌 Projects carousel ready");
+        }
+    }
+};
+
+Object.values(heavyBlocks).forEach(block => {
+    const el = document.querySelector(block.selector);
+    if (!el) return;
+
+    const obs = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting && !block.loaded) {
+            block.loaded = true;
+            block.init();
+            obs.disconnect();
+        }
+    }, { threshold: 0.25 });
+
+    obs.observe(el);
+});
+
+// --------------------------------------------------
+// 5. Ленивая загрузка текстур для Babylon.js сцен
+// --------------------------------------------------
+const lazyTextures = [
+    { name: "pineTexture", url: "assets/img/textures/needles.jpg" },
+    { name: "groundTexture", url: "assets/img/textures/grade.jpg" },
+    { name: "rustTexture",  url: "assets/img/textures/metal_rust.jpg" }
+];
+
+let babylonTexturesLoaded = false;
+
+const sceneTrigger = document.querySelector(".hero");
+if (sceneTrigger) {
+    const obs = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting && !babylonTexturesLoaded) {
+            babylonTexturesLoaded = true;
+
+            lazyTextures.forEach(t => {
+                new BABYLON.Texture(t.url, scene);
+            });
+        }
+    }, { threshold: 0.1 });
+
+    obs.observe(sceneTrigger);
+}

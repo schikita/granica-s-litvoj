@@ -1460,7 +1460,7 @@ function initGridCarousel() {
         track.style.transition = "transform 0.8s ease";
     });
 
-    setInterval(slide, 8000);
+    setInterval(slide, 12000);
 }
 
 initGridCarousel();

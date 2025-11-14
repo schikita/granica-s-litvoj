@@ -935,31 +935,25 @@ h1.hero-title {
 
 
 /*  КОГО НЕ КАСАЮТСЯ ОГРАНИЧЕНИЯ */
-
+/* ОБЩИЕ НАСТРОЙКИ */
 .crossing-grid-section {
-    padding: 80px 0;
+    padding: 60px 0;
     text-align: center;
 }
 
-.grid-title {
-    font-size: 32px;
-    font-weight: 700;
-    margin-bottom: 40px;
-    color: #fff;
-}
-
-/* КОНТЕЙНЕР СЛАЙДЕРА */
 .grid-carousel {
-    overflow: hidden;
-    width: 100%;
-    position: relative;
+    overflow-x: auto;
+    overflow-y: visible;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 10px;
 }
 
-/* ЛЕНТА */
 .grid-track {
     display: flex;
-    gap: 40px;
-    transition: transform 0.8s ease;
+    gap: 24px;
+    padding: 0 12px;
+    transition: transform 0.5s ease;
 }
 
 /* КАРТОЧКА */
@@ -967,43 +961,510 @@ h1.hero-title {
     flex: 0 0 420px;
     background: rgba(0, 0, 0, 0.75);
     padding: 30px;
-    border-radius: 12px;
-    text-align: center;
+    border-radius: 14px;
+    text-align: left;
     color: #fff;
-    min-height: 300px;
+    min-height: 350px;
+    scroll-snap-align: center;
+}
+
+/* ИКОНКА */
+.grid-icon {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 16px;
 }
 
 .grid-card p {
     font-size: 18px;
     font-weight: 300;
-    line-height: 1.5;
+    line-height: 1.55;
 }
 
-/* ИКОНКА */
-.grid-icon {
-    width: 80px;
-    height: 80px;
-    margin-bottom: 20px;
-}
-
-/* НИЖНЯЯ ПРИМЕЧАНИЕ */
+/* НИЖНИЙ БЛОК */
 .grid-bottom-note {
-    background: rgba(0, 0, 0, 0.4);
-    padding: 20px 30px;
-    border-radius: 10px;
-    border: 2px solid #610000;
     margin-top: 40px;
-    color: #fff;
-    font-size: 16px;
 }
 
-/* АДАПТИВ */
-@media (max-width: 600px) {
+
+
+/* =========================== */
+/*      А Д А П Т И В          */
+/* =========================== */
+
+@media (max-width: 768px) {
+    .grid-title {
+        font-size: 26px;
+    }
+
     .grid-card {
-        flex: 0 0 80%;
+        flex: 0 0 85%;
+        min-height: auto;
+        padding: 24px;
+    }
+
+    .grid-icon {
+        width: 56px;
+        height: 56px;
+    }
+
+    .grid-card p {
+        font-size: 16px;
+        line-height: 1.5;
     }
 
     .grid-track {
-        gap: 20px;
+        gap: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .grid-card {
+        flex: 0 0 92%;
+        padding: 20px;
+    }
+
+    .grid-icon {
+        width: 48px;
+        height: 48px;
+    }
+
+    .grid-card p {
+        font-size: 15px;
+        line-height: 1.45;
+    }
+
+    .grid-title {
+        font-size: 22px;
+        margin-bottom: 28px;
+    }
+
+    .crossing-grid-section {
+        padding: 40px 0;
+    }
+}
+
+@media (max-width: 360px) {
+    .grid-card {
+        flex: 0 0 95%;
+    }
+
+    .grid-card p {
+        font-size: 14px;
+    }
+}
+
+/* ============== Секция с цитатой =============== */
+
+.quote-section {
+    padding: 80px 20px;
+    
+    color: #fff;
+    display: flex;
+    justify-content: center;
+}
+
+.quote-container {
+    max-width: 900px;
+    position: relative;
+    padding: 40px 30px;
+    background: rgba(10, 10, 10, 0.37);
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.12);
+    backdrop-filter: blur(6px);
+}
+
+.quote-mark {
+    font-size: 120px;
+    font-weight: 700;
+    line-height: 0.8;
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    opacity: 0.15;
+    user-select: none;
+}
+
+.quote-text {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-weight: 300;
+}
+
+.direct-speech {
+    font-size: 16px;
+    line-height: 1.7;
+    font-weight: 400;
+    margin: 30px 0;
+    padding: 25px 30px;
+    
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 6px;    
+}
+
+.quote-author {
+    margin-top: 15px;
+    font-size: 18px;
+    opacity: 0.8;
+    font-weight: 300;
+}
+
+/* Адаптив */
+@media (max-width: 600px) {
+    .quote-container {
+        padding: 30px 20px;
+    }
+
+    .quote-text {
+        font-size: 17px;
+    }
+
+    .direct-speech {
+        font-size: 18px;
+        padding: 20px 20px;
+    }
+
+    .quote-mark {
+        font-size: 80px;
+        top: -5px;
+        left: 5px;
+    }
+
+    .quote-author {
+        font-size: 16px;
+    }
+}
+
+
+/*Секция с видео*/
+
+.belarus-response-section {
+    background: rgba(0, 0, 0, 0.315);
+    color: #fff;
+    padding: 80px 0;
+}
+
+.response-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 50px;
+    align-items: center; /* ← вот это центрирует вертикально */
+    padding: 0 30px;
+    min-height: 100vh; /* чтобы было место для центрирования */
+}
+
+
+.response-text {
+    flex: 1 1 55%;
+    animation: fadeInLeft 0.8s ease forwards;
+    opacity: 0;
+}
+
+.response-text h2 {
+    font-size: 38px;
+    margin-bottom: 25px;
+    font-weight: 700;
+}
+
+.response-text p {
+    font-size: 20px;
+    line-height: 1.6;
+    margin-bottom: 18px;
+    font-weight: 300;
+}
+
+.response-video {
+    flex: 1 1 35%;
+    display: flex;
+    justify-content: flex-end;
+    animation: fadeInRight 0.8s ease forwards;
+    opacity: 0;
+}
+
+.response-video video {
+    width: 100%;
+    max-width: 420px;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.15);
+    box-shadow: 0 0 20px rgba(0,0,0,0.6);
+    aspect-ratio: 9 / 16;
+    object-fit: cover;
+}
+
+
+/* Анимации */
+@keyframes fadeInLeft {
+    from { transform: translateX(-40px); opacity: 0; }
+    to   { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fadeInRight {
+    from { transform: translateX(40px); opacity: 0; }
+    to   { transform: translateX(0); opacity: 1; }
+}
+
+
+/* Адаптив */
+@media (max-width: 900px) {
+    .response-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .response-video {
+        justify-content: center;
+    }
+
+    .response-text p {
+        font-size: 18px;
+    }
+
+    .response-text h2 {
+        font-size: 32px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 500px) {
+    .response-text p {
+        font-size: 16px;
+    }
+
+    .response-text h2 {
+        font-size: 28px;
+    }
+
+    .response-video video {
+        max-width: 300px;
+    }
+}
+
+
+/* === Охрана авто === */
+
+.belarus-warning-section {
+    background: rgba(0, 0, 0, 0.192);
+    color: #fff;
+    padding: 80px 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.warning-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 50px;
+    align-items: center; /* вертикальное выравнивание */
+    padding: 0 30px;
+}
+
+/* ЛЕВАЯ КОЛОНКА — ВИДЕО */
+.warning-video {
+    flex: 1 1 40%;
+    display: flex;
+    justify-content: flex-start;
+    animation: fadeInLeft 0.8s ease forwards;
+    opacity: 0;
+}
+
+.warning-video video {
+    width: 100%;
+    max-width: 420px;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.15);
+    box-shadow: 0 0 20px rgba(0,0,0,0.6);
+    aspect-ratio: 9 / 16;
+    object-fit: cover;
+}
+
+/* ПРАВАЯ КОЛОНКА — ТЕКСТ */
+.warning-text {
+    flex: 1 1 55%;
+    animation: fadeInRight 0.8s ease forwards;
+    opacity: 0;
+    background: #03060aa4;
+    padding: 40px;
+    border-radius: 14px;
+    height: 100%;
+}
+
+.warning-text h2 {
+    font-size: 38px;
+    margin-bottom: 25px;
+    font-weight: 700;
+}
+
+.warning-text p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 18px;
+    font-weight: 300;
+}
+
+/* Прямая речь */
+.president-quote {
+    background: rgba(255, 255, 255, 0.06);    
+    padding: 20px 26px;
+    margin: 25px 0;    
+    font-size: 18px;
+    line-height: 1.6;
+    border-radius: 6px;
+}
+
+
+/* Адаптив */
+@media (max-width: 900px) {
+    .warning-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .warning-text {
+        text-align: left;
+    }
+
+    .warning-text h2 {
+        text-align: center;
+        font-size: 32px;
+    }
+
+    .warning-text p {
+        font-size: 18px;
+    }
+
+    .warning-video {
+        justify-content: center;
+    }
+
+    .warning-video video {
+        max-width: 330px;
+    }
+}
+
+@media (max-width: 500px) {
+    .warning-text h2 {
+        font-size: 28px;
+    }
+
+    .warning-text p {
+        font-size: 16px;
+    }
+
+    .president-quote {
+        font-size: 18px;
+        padding: 18px 18px;
+    }
+}
+
+
+/* ===========   DRIVER VIDEO =============== */
+
+.parking-stations-section {
+    background: rgba(0, 0, 0, 0.363);
+    color: #fff;
+    padding: 80px 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.parking-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 50px;
+    align-items: center;
+    padding: 0 30px;
+}
+
+/* ТЕКСТ */
+.parking-text {
+    flex: 1 1 55%;
+    animation: fadeInLeft 0.8s ease forwards;
+    opacity: 0;
+}
+
+.parking-text h2 {
+    font-size: 38px;
+    margin-bottom: 25px;
+    font-weight: 700;
+}
+
+.parking-text p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 18px;
+    font-weight: 300;
+}
+
+.driver-quote {
+    background: rgba(255,255,255,0.06);   
+    padding: 20px 26px;
+    margin: 25px 0;    
+    font-size: 18px;
+    line-height: 1.6;
+    border-radius: 6px;
+}
+
+/* ВИДЕО */
+.parking-video {
+    flex: 1 1 40%;
+    display: flex;
+    justify-content: flex-end;
+    animation: fadeInRight 0.8s ease forwards;
+    opacity: 0;
+}
+
+.parking-video video {
+    width: 100%;
+    max-width: 420px;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.15);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.219);
+    aspect-ratio: 9/16;
+    object-fit: cover;
+}
+
+/* Адаптив */
+@media (max-width: 900px) {
+    .parking-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .parking-text h2 {
+        font-size: 32px;
+        text-align: center;
+    }
+
+    .parking-text p {
+        font-size: 18px;
+    }
+
+    .parking-video {
+        justify-content: center;
+    }
+
+    .parking-video video {
+        max-width: 330px;
+    }
+}
+
+@media (max-width: 500px) {
+    .parking-text h2 {
+        font-size: 28px;
+    }
+
+    .parking-text p {
+        font-size: 16px;
+    }
+
+    .driver-quote {
+        font-size: 18px;
+        padding: 18px 18px;
     }
 }

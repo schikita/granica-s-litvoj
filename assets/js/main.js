@@ -1412,22 +1412,32 @@ function typewriterEffect(element, text, speed = 25) {
 
 function initGridCarousel() {
     const track = document.querySelector(".grid-track");
-    const cards = document.querySelectorAll(".grid-card");
+    const cards = Array.from(document.querySelectorAll(".grid-card"));
 
-    if (!track) return;
+    if (!track || cards.length === 0) return;
 
     let index = 0;
+    let cardWidth = getCardWidth();
 
-    // Дублируем карточки для бесконечного цикла
+    // Дублируем оригинальные карточки — для бесконечного цикла
     cards.forEach(card => {
-        const clone = card.cloneNode(true);
-        track.appendChild(clone);
+        track.appendChild(card.cloneNode(true));
     });
 
+    // Функция для точного вычисления ширины
+    function getCardWidth() {
+        const card = document.querySelector(".grid-card");
+        if (!card) return 0;
+
+        const styles = window.getComputedStyle(track);
+        const gap = parseInt(styles.columnGap || styles.gap || 0);
+
+        return card.offsetWidth + gap;
+    }
+
+    // Основной слайд
     function slide() {
         index++;
-        const cardWidth = cards[0].offsetWidth + 40; // включая gap
-
         track.style.transform = `translateX(${-index * cardWidth}px)`;
 
         if (index >= cards.length) {
@@ -1435,14 +1445,23 @@ function initGridCarousel() {
                 track.style.transition = "none";
                 index = 0;
                 track.style.transform = "translateX(0)";
-                void track.offsetWidth;
+                void track.offsetWidth; // принудительный реflow
                 track.style.transition = "transform 0.8s ease";
             }, 900);
         }
     }
 
+    // Пересчёт ширины при изменении окна/ориентации
+    window.addEventListener("resize", () => {
+        cardWidth = getCardWidth();
+        track.style.transition = "none";
+        track.style.transform = `translateX(${-index * cardWidth}px)`;
+        void track.offsetWidth;
+        track.style.transition = "transform 0.8s ease";
+    });
+
     setInterval(slide, 8000);
 }
 
-// Запуск
 initGridCarousel();
+
